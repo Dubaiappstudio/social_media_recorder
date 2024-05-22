@@ -16,7 +16,7 @@ class SocialMediaRecorder extends StatefulWidget {
   final Color? cancelTextBackGroundColor;
 
   /// function return the recording sound file and the time
-  final Function(File soundFile, String time) sendRequestFunction;
+  final Function(String soundFile, String time) sendRequestFunction;
 
   /// function called when start recording
   final Function(String filePath)? startRecording;

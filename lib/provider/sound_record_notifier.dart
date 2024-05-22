@@ -67,7 +67,7 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   /// function called when start recording
   Function(String)? startRecording;
-  Function(File soundFile, String time) sendRequestFunction;
+  Function(String soundFilePath, String time) sendRequestFunction;
 
   /// function called when stop recording, return the recording time (even if time < 1)
   Function(String filePath , String time)? stopRecording;
@@ -104,9 +104,10 @@ class SoundRecordNotifier extends ChangeNotifier {
   finishRecording() {
     if (buttonPressed) {
       if (second > 1 || minute > 0) {
+        print("the current path is $mPath");
         String path = mPath;
         String _time = minute.toString() + ":" + second.toString();
-        sendRequestFunction(File.fromUri(Uri(path: path)), _time);
+        sendRequestFunction(path, _time);
         stopRecording!( path,_time);
       }
     }
