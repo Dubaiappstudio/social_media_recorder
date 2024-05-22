@@ -10,7 +10,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
   final SoundRecordNotifier soundRecordNotifier;
   final String? cancelText;
   final Function sendRequestFunction;
-  final Function(String time)? stopRecording;
+  final Function(String filePath , String time)? stopRecording;
   final Widget? recordIconWhenLockedRecord;
   final TextStyle? cancelTextStyle;
   final TextStyle? counterTextStyle;
@@ -18,6 +18,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
   final Color? counterBackGroundColor;
   final Color? cancelTextBackGroundColor;
   final Widget? sendButtonIcon;
+  final double? width;
   // ignore: sort_constructors_first
   const SoundRecorderWhenLockedDesign({
     Key? key,
@@ -30,6 +31,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
     required this.recordIconWhenLockedRecord,
     required this.cancelTextStyle,
     required this.counterTextStyle,
+    this.width,
     required this.recordIconWhenLockBackGroundColor,
     required this.counterBackGroundColor,
     required this.cancelTextBackGroundColor,
@@ -38,7 +40,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: width?? MediaQuery.of(context).size.width* 0.8,
       decoration: BoxDecoration(
         color: cancelTextBackGroundColor ?? Colors.grey.shade100,
         borderRadius: const BorderRadius.only(
@@ -94,7 +96,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
                     String _time = soundRecordNotifier.minute.toString() +
                         ":" +
                         soundRecordNotifier.second.toString();
-                    if (stopRecording != null) stopRecording!(_time);
+                    if (stopRecording != null) stopRecording!(soundRecordNotifier.mPath,_time);
                     soundRecordNotifier.resetEdgePadding();
                   },
                   child: Padding(

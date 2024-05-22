@@ -66,11 +66,11 @@ class SoundRecordNotifier extends ChangeNotifier {
   late String mPath;
 
   /// function called when start recording
-  Function()? startRecording;
+  Function(String)? startRecording;
   Function(File soundFile, String time) sendRequestFunction;
 
   /// function called when stop recording, return the recording time (even if time < 1)
-  Function(String time)? stopRecording;
+  Function(String filePath , String time)? stopRecording;
 
   late AudioEncoderType encode;
 
@@ -107,7 +107,7 @@ class SoundRecordNotifier extends ChangeNotifier {
         String path = mPath;
         String _time = minute.toString() + ":" + second.toString();
         sendRequestFunction(File.fromUri(Uri(path: path)), _time);
-        stopRecording!(_time);
+        stopRecording!( path,_time);
       }
     }
     resetEdgePadding();
@@ -131,35 +131,38 @@ class SoundRecordNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _getSoundExtention() {
-    if (encode == AudioEncoderType.AAC ||
-        encode == AudioEncoderType.AAC_LD ||
-        encode == AudioEncoderType.AAC_HE ||
-        encode == AudioEncoderType.OPUS) {
-      return ".m4a";
-    } else {
-      return ".3gp";
-    }
-  }
+  // String _getSoundExtention() {
+  //   if (encode == AudioEncoderType.AAC ||
+  //       encode == AudioEncoderType.AAC_LD ||
+  //       encode == AudioEncoderType.AAC_HE ||
+  //       encode == AudioEncoderType.OPUS) {
+  //     return ".m4a";
+  //   } else {
+  //     return ".3gp";
+  //   }
+  // }
 
   /// used to get the current store path
   Future<String> getFilePath() async {
-    String _sdPath = "";
-    Directory tempDir = await getTemporaryDirectory();
-    _sdPath =
-        initialStorePathRecord.isEmpty ? tempDir.path : initialStorePathRecord;
-    var d = Directory(_sdPath);
-    if (!d.existsSync()) {
-      d.createSync(recursive: true);
-    }
+    Directory tempDir = await getApplicationDocumentsDirectory();
+    print('startRecording');
+    // // Directory tempDir = await getApplicationDocumentsDirectory();
+    // int random = Random().nextInt(100000);
+    //
+    // _sdPath =
+    //     initialStorePathRecord.isEmpty ? tempDir.path : initialStorePathRecord;
+    // var d = Directory(_sdPath);
+    // if (!d.existsSync()) {
+    //   d.createSync(recursive: true);
+    // }
     DateTime now = DateTime.now();
     String convertedDateTime =
         "${now.year.toString()}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}-${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
     // print("the current data is $convertedDateTime");
-    String storagePath =
-        _sdPath + "/" + convertedDateTime + _getSoundExtention();
-    mPath = storagePath;
-    return storagePath;
+
+    String filePath = '${tempDir.path}/Roomco_sound_$convertedDateTime.wav';
+    mPath = filePath;
+    return filePath;
   }
 
   /// used to change the draggable to top value
@@ -197,7 +200,7 @@ class SoundRecordNotifier extends ChangeNotifier {
         Offset position = box.localToGlobal(Offset.zero);
         if (position.dx <= MediaQuery.of(context).size.width * 0.6) {
           String _time = minute.toString() + ":" + second.toString();
-          if (stopRecording != null) stopRecording!(_time);
+          if (stopRecording != null) stopRecording!(mPath,_time);
           resetEdgePadding();
         } else if (x.dx >= MediaQuery.of(context).size.width) {
           edge = 0;
@@ -249,7 +252,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   }
 
   /// this function to start record voice
-  record(Function()? startRecord) async {
+  record(Function(String)? startRecord) async {
     if (!_isAcceptedPermission) {
       await Permission.microphone.request();
       await Permission.manageExternalStorage.request();
@@ -257,13 +260,14 @@ class SoundRecordNotifier extends ChangeNotifier {
       _isAcceptedPermission = true;
     } else {
       buttonPressed = true;
+
       String recordFilePath = await getFilePath();
       _timer = Timer(const Duration(milliseconds: 900), () {
         recordMp3.start(path: recordFilePath);
       });
 
       if (startRecord != null) {
-        startRecord();
+        startRecord(recordFilePath);
       }
 
       _mapCounterGenerater();

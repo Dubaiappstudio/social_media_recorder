@@ -19,10 +19,10 @@ class SocialMediaRecorder extends StatefulWidget {
   final Function(File soundFile, String time) sendRequestFunction;
 
   /// function called when start recording
-  final Function()? startRecording;
+  final Function(String filePath)? startRecording;
 
   /// function called when stop recording, return the recording time (even if time < 1)
-  final Function(String time)? stopRecording;
+  final Function(String filePath,String time)? stopRecording;
 
   /// recording Icon That pressesd to start record
   final Widget? recordIcon;
@@ -82,6 +82,8 @@ class SocialMediaRecorder extends StatefulWidget {
 
   final double initRecordPackageWidth;
 
+  final double? width;
+
   // ignore: sort_constructors_first
   const SocialMediaRecorder({
     this.sendButtonIcon,
@@ -94,6 +96,7 @@ class SocialMediaRecorder extends StatefulWidget {
     this.stopRecording,
     this.recordIcon,
     this.lockButton,
+    this.width,
     this.counterBackGroundColor,
     this.recordIconWhenLockedRecord,
     this.recordIconBackGroundColor = Colors.blue,
@@ -121,8 +124,8 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   void initState() {
     soundRecordNotifier = SoundRecordNotifier(
       maxRecordTime: widget.maxRecordTimeInSecond,
-      startRecording: widget.startRecording ?? () {},
-      stopRecording: widget.stopRecording ?? (String x) {},
+      startRecording: widget.startRecording ?? (String s) {},
+      stopRecording: widget.stopRecording ?? (String filePath ,String x) {},
       sendRequestFunction: widget.sendRequestFunction,
     );
 
@@ -141,8 +144,8 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   @override
   Widget build(BuildContext context) {
     soundRecordNotifier.maxRecordTime = widget.maxRecordTimeInSecond;
-    soundRecordNotifier.startRecording = widget.startRecording ?? () {};
-    soundRecordNotifier.stopRecording = widget.stopRecording ?? (String x) {};
+    soundRecordNotifier.startRecording = widget.startRecording ?? (String x ) {};
+    soundRecordNotifier.stopRecording = widget.stopRecording ?? (String filePath ,String x) {};
     soundRecordNotifier.sendRequestFunction = widget.sendRequestFunction;
     return MultiProvider(
         providers: [
@@ -217,7 +220,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
         duration: Duration(milliseconds: soundRecordNotifier.isShow ? 0 : 300),
         height: widget.fullRecordPackageHeight,
         width: (soundRecordNotifier.isShow)
-            ? MediaQuery.of(context).size.width
+            ? widget.width?? MediaQuery.of(context).size.width * 0.8
             : widget.initRecordPackageWidth,
         child: Stack(
           children: [
