@@ -19,10 +19,10 @@ class SocialMediaRecorder extends StatefulWidget {
   final Function(String soundFile, String time) sendRequestFunction;
 
   /// function called when start recording
-  final Function(String filePath)? startRecording;
+  final Function()? startRecording;
 
   /// function called when stop recording, return the recording time (even if time < 1)
-  final Function(String filePath,String time)? stopRecording;
+  final Function(String time)? stopRecording;
 
   /// recording Icon That pressesd to start record
   final Widget? recordIcon;
@@ -124,8 +124,8 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   void initState() {
     soundRecordNotifier = SoundRecordNotifier(
       maxRecordTime: widget.maxRecordTimeInSecond,
-      startRecording: widget.startRecording ?? (String s) {},
-      stopRecording: widget.stopRecording ?? (String filePath ,String x) {},
+      startRecording: widget.startRecording ?? () {},
+      stopRecording: widget.stopRecording ?? (String x) {},
       sendRequestFunction: widget.sendRequestFunction,
     );
 
@@ -144,8 +144,8 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   @override
   Widget build(BuildContext context) {
     soundRecordNotifier.maxRecordTime = widget.maxRecordTimeInSecond;
-    soundRecordNotifier.startRecording = widget.startRecording ?? (String x ) {};
-    soundRecordNotifier.stopRecording = widget.stopRecording ?? (String filePath ,String x) {};
+    soundRecordNotifier.startRecording = widget.startRecording ?? () {};
+    soundRecordNotifier.stopRecording = widget.stopRecording ?? (String x) {};
     soundRecordNotifier.sendRequestFunction = widget.sendRequestFunction;
     return MultiProvider(
         providers: [

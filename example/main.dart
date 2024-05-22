@@ -45,10 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: Alignment.centerRight,
             child: SocialMediaRecorder(
               // maxRecordTimeInSecond: 5,
-              startRecording: (file) {
+              startRecording: () {
                 // function called when start recording
               },
-              stopRecording: (file , _time) {
+              stopRecording: (_time) {
                 // function called when stop recording, return the recording time
               },
               sendRequestFunction: (soundFile, _time) {

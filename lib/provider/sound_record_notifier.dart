@@ -66,11 +66,11 @@ class SoundRecordNotifier extends ChangeNotifier {
   late String mPath;
 
   /// function called when start recording
-  Function(String)? startRecording;
+  Function()? startRecording;
   Function(String soundFilePath, String time) sendRequestFunction;
 
   /// function called when stop recording, return the recording time (even if time < 1)
-  Function(String filePath , String time)? stopRecording;
+  Function( String time)? stopRecording;
 
   late AudioEncoderType encode;
 
@@ -104,11 +104,11 @@ class SoundRecordNotifier extends ChangeNotifier {
   finishRecording() {
     if (buttonPressed) {
       if (second > 1 || minute > 0) {
-        print("the current path is $mPath");
+        // print("the current path is $mPath");
         String path = mPath;
         String _time = minute.toString() + ":" + second.toString();
         sendRequestFunction(path, _time);
-        stopRecording!( path,_time);
+        stopRecording!(_time);
       }
     }
     resetEdgePadding();
@@ -146,7 +146,6 @@ class SoundRecordNotifier extends ChangeNotifier {
   /// used to get the current store path
   Future<String> getFilePath() async {
     Directory tempDir = await getApplicationDocumentsDirectory();
-    print('startRecording');
     // // Directory tempDir = await getApplicationDocumentsDirectory();
     // int random = Random().nextInt(100000);
     //
@@ -201,7 +200,7 @@ class SoundRecordNotifier extends ChangeNotifier {
         Offset position = box.localToGlobal(Offset.zero);
         if (position.dx <= MediaQuery.of(context).size.width * 0.6) {
           String _time = minute.toString() + ":" + second.toString();
-          if (stopRecording != null) stopRecording!(mPath,_time);
+          if (stopRecording != null) stopRecording!(_time);
           resetEdgePadding();
         } else if (x.dx >= MediaQuery.of(context).size.width) {
           edge = 0;
@@ -253,7 +252,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   }
 
   /// this function to start record voice
-  record(Function(String)? startRecord) async {
+  record(Function()? startRecord) async {
     if (!_isAcceptedPermission) {
       await Permission.microphone.request();
       await Permission.manageExternalStorage.request();
@@ -262,13 +261,13 @@ class SoundRecordNotifier extends ChangeNotifier {
     } else {
       buttonPressed = true;
 
-      String recordFilePath = await getFilePath();
-      _timer = Timer(const Duration(milliseconds: 900), () {
-        recordMp3.start(path: recordFilePath);
-      });
+      // String recordFilePath = await getFilePath();
+      // _timer = Timer(const Duration(milliseconds: 900), () {
+      //   recordMp3.start(path: recordFilePath);
+      // });
 
       if (startRecord != null) {
-        startRecord(recordFilePath);
+        startRecord();
       }
 
       _mapCounterGenerater();
