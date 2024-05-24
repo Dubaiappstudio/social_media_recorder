@@ -1,6 +1,5 @@
 library social_media_recorder;
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_recorder/provider/sound_record_notifier.dart';
@@ -208,7 +207,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
         state.setNewInitialDraggableHeight(details.position.dy);
         state.resetEdgePadding();
 
-        soundRecordNotifier.isShow = true;
+        // soundRecordNotifier.isShow = true;
         state.record(widget.startRecording);
       },
       onPointerUp: (details) async {
@@ -220,7 +219,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
         duration: Duration(milliseconds: soundRecordNotifier.isShow ? 0 : 300),
         height: widget.fullRecordPackageHeight,
         width: (soundRecordNotifier.isShow)
-            ? widget.width?? MediaQuery.of(context).size.width * 0.8
+            ? widget.width ?? MediaQuery.of(context).size.width * 0.8
             : widget.initRecordPackageWidth,
         child: Stack(
           children: [

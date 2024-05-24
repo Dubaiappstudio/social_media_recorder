@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -70,7 +71,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   Function(String soundFilePath, String time) sendRequestFunction;
 
   /// function called when stop recording, return the recording time (even if time < 1)
-  Function( String time)? stopRecording;
+  Function(String time)? stopRecording;
 
   late AudioEncoderType encode;
 
@@ -109,6 +110,8 @@ class SoundRecordNotifier extends ChangeNotifier {
         String _time = minute.toString() + ":" + second.toString();
         sendRequestFunction(path, _time);
         stopRecording!(_time);
+      } else {
+        stopRecording!('0:0');
       }
     }
     resetEdgePadding();
@@ -253,6 +256,7 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   /// this function to start record voice
   record(Function()? startRecord) async {
+    isShow = true;
     if (!_isAcceptedPermission) {
       await Permission.microphone.request();
       await Permission.manageExternalStorage.request();
