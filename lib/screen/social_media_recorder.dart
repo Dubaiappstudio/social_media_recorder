@@ -256,6 +256,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
                           child: ShowCounter(
                               counterBackGroundColor:
                                   widget.counterBackGroundColor,
+                            counterTextStyle: widget.counterTextStyle,
                               soundRecorderState: state,
                               fullRecordPackageHeight:
                                   widget.fullRecordPackageHeight),
