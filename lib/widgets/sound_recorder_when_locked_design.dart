@@ -93,9 +93,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
               child: InkWell(
                   onTap: () {
                     soundRecordNotifier.isShow = false;
-                    String _time = soundRecordNotifier.minute.toString() +
-                        ":" +
-                        soundRecordNotifier.second.toString();
+                    String _time = '0:0';
                     if (stopRecording != null) stopRecording!(_time);
                     soundRecordNotifier.resetEdgePadding();
                   },
