@@ -104,7 +104,7 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   finishRecording() {
     if (buttonPressed) {
-      if (second > 1 || minute > 0) {
+      if (second > 0 || minute > 0) {
         // print("the current path is $mPath");
         String path = mPath;
         String _time = minute.toString() + ":" + second.toString();
