@@ -256,12 +256,12 @@ class SoundRecordNotifier extends ChangeNotifier {
   /// this function to start record voice
   record(Function()? startRecord) async {
     isShow = true;
-    if (!_isAcceptedPermission) {
+    // if (!_isAcceptedPermission) {
       // await Permission.microphone.request();
       // await Permission.manageExternalStorage.request();
       // await Permission.storage.request();
       // _isAcceptedPermission = true;
-    } else {
+    // } else {
       buttonPressed = true;
 
       // String recordFilePath = await getFilePath();
@@ -275,7 +275,7 @@ class SoundRecordNotifier extends ChangeNotifier {
 
       _mapCounterGenerater();
       notifyListeners();
-    }
+    // }
     notifyListeners();
   }
 
