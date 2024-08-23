@@ -128,10 +128,9 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
       sendRequestFunction: widget.sendRequestFunction,
     );
 
-    soundRecordNotifier.initialStorePathRecord =
-        widget.storeSoundRecoringPath ?? "";
+    soundRecordNotifier.initialStorePathRecord = widget.storeSoundRecoringPath ?? "";
     soundRecordNotifier.isShow = false;
-    soundRecordNotifier.voidInitialSound();
+    // soundRecordNotifier.voidInitialSound();
     super.initState();
   }
 
@@ -152,8 +151,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
         ],
         child: Consumer<SoundRecordNotifier>(
           builder: (context, value, _) {
-            return Directionality(
-                textDirection: TextDirection.rtl, child: makeBody(value));
+            return Directionality(textDirection: TextDirection.rtl, child: makeBody(value));
           },
         ));
   }
@@ -192,8 +190,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
         cancelTextBackGroundColor: widget.cancelTextBackGroundColor,
         cancelTextStyle: widget.cancelTextStyle,
         counterBackGroundColor: widget.counterBackGroundColor,
-        recordIconWhenLockBackGroundColor:
-            widget.recordIconWhenLockBackGroundColor ?? Colors.blue,
+        recordIconWhenLockBackGroundColor: widget.recordIconWhenLockBackGroundColor ?? Colors.blue,
         counterTextStyle: widget.counterTextStyle,
         recordIconWhenLockedRecord: widget.recordIconWhenLockedRecord,
         sendRequestFunction: widget.sendRequestFunction,
@@ -242,8 +239,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
                           initRecordPackageWidth: widget.initRecordPackageWidth,
                           counterBackGroundColor: widget.counterBackGroundColor,
                           backGroundColor: widget.recordIconBackGroundColor,
-                          fullRecordPackageHeight:
-                              widget.fullRecordPackageHeight,
+                          fullRecordPackageHeight: widget.fullRecordPackageHeight,
                           recordIcon: widget.recordIcon,
                           shouldShowText: soundRecordNotifier.isShow,
                           soundRecorderState: state,
@@ -254,12 +250,10 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
                       if (soundRecordNotifier.isShow)
                         Center(
                           child: ShowCounter(
-                              counterBackGroundColor:
-                                  widget.counterBackGroundColor,
-                            counterTextStyle: widget.counterTextStyle,
+                              counterBackGroundColor: widget.counterBackGroundColor,
+                              counterTextStyle: widget.counterTextStyle,
                               soundRecorderState: state,
-                              fullRecordPackageHeight:
-                                  widget.fullRecordPackageHeight),
+                              fullRecordPackageHeight: widget.fullRecordPackageHeight),
                         ),
                     ],
                   ),

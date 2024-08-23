@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:record/record.dart';
 import 'package:social_media_recorder/audio_encoder_type.dart';
 // import 'package:uuid/uuid.dart';
 
@@ -26,7 +25,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   String initialStorePathRecord = "";
 
   /// recording mp3 sound Object
-  Record recordMp3 = Record();
+  // AudioRecorder recordMp3 = AudioRecorder();
 
   /// recording mp3 sound to check if all permisiion passed
   bool _isAcceptedPermission = false;
@@ -131,7 +130,7 @@ class SoundRecordNotifier extends ChangeNotifier {
     lockScreenRecord = false;
     if (_timer != null) _timer!.cancel();
     if (_timerCounter != null) _timerCounter!.cancel();
-    recordMp3.stop();
+    // recordMp3.stop();
     notifyListeners();
   }
 
@@ -258,10 +257,10 @@ class SoundRecordNotifier extends ChangeNotifier {
   record(Function()? startRecord) async {
     isShow = true;
     if (!_isAcceptedPermission) {
-      await Permission.microphone.request();
-      await Permission.manageExternalStorage.request();
-      await Permission.storage.request();
-      _isAcceptedPermission = true;
+      // await Permission.microphone.request();
+      // await Permission.manageExternalStorage.request();
+      // await Permission.storage.request();
+      // _isAcceptedPermission = true;
     } else {
       buttonPressed = true;
 
