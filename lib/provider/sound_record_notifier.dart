@@ -101,12 +101,15 @@ class SoundRecordNotifier extends ChangeNotifier {
     });
   }
 
-  finishRecording() {
+  finishRecording({bool? fromScrollEnd}) {
     if (buttonPressed) {
       if (second > 0 || minute > 0) {
         // print("the current path is $mPath");
         String path = mPath;
         String _time = minute.toString() + ":" + second.toString();
+        if (fromScrollEnd != null && fromScrollEnd) {
+          _time = '0:0';
+        }
         sendRequestFunction(path, _time);
         stopRecording!(_time);
       } else {
@@ -258,24 +261,24 @@ class SoundRecordNotifier extends ChangeNotifier {
   record(Function()? startRecord) async {
     isShow = true;
     // if (!_isAcceptedPermission) {
-      // await Permission.microphone.request();
-      // await Permission.manageExternalStorage.request();
-      // await Permission.storage.request();
-      // _isAcceptedPermission = true;
+    // await Permission.microphone.request();
+    // await Permission.manageExternalStorage.request();
+    // await Permission.storage.request();
+    // _isAcceptedPermission = true;
     // } else {
-      buttonPressed = true;
+    buttonPressed = true;
 
-      // String recordFilePath = await getFilePath();
-      // _timer = Timer(const Duration(milliseconds: 900), () {
-      //   recordMp3.start(path: recordFilePath);
-      // });
+    // String recordFilePath = await getFilePath();
+    // _timer = Timer(const Duration(milliseconds: 900), () {
+    //   recordMp3.start(path: recordFilePath);
+    // });
 
-      if (startRecord != null) {
-        startRecord();
-      }
+    if (startRecord != null) {
+      startRecord();
+    }
 
-      _mapCounterGenerater();
-      notifyListeners();
+    _mapCounterGenerater();
+    notifyListeners();
     // }
     notifyListeners();
   }

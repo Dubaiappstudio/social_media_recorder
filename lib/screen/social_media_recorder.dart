@@ -164,7 +164,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
             state.updateScrollValue(scrollEnd.globalPosition, context);
           },
           onHorizontalDragEnd: (x) {
-            if (state.buttonPressed && !state.isLocked) state.finishRecording();
+            if (state.buttonPressed && !state.isLocked) state.finishRecording(fromScrollEnd: true);
           },
           child: Container(
             decoration: const BoxDecoration(
