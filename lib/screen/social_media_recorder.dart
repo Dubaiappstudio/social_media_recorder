@@ -209,7 +209,9 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
       },
       onPointerUp: (details) async {
         if (!state.isLocked) {
-          // state.finishRecording();
+          Future.delayed(const Duration(milliseconds: 100), () {
+            state.finishRecording();
+          });
         }
       },
       child: AnimatedContainer(
