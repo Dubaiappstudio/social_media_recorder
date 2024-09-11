@@ -175,8 +175,8 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
             // Calculate the drag distance
             double dragDistance = finalPosition - initialPosition;
 
-            print((MediaQuery.of(context).size.width / 2));
-            print(dragDistance.abs());
+            //print((MediaQuery.of(context).size.width / 2));
+            //print(dragDistance.abs());
 
             // Check if the drag distance is more than 50% of the screen width
             if (dragDistance.abs() >= (MediaQuery.of(context).size.width / 2)) {
@@ -187,7 +187,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
               state.finishRecording();
               print('Scroll less than 50% of screen width');
             }
-            if (state.buttonPressed && !state.isLocked) state.finishRecording(fromScrollEnd: true);
+            //if (state.buttonPressed && !state.isLocked) state.finishRecording(fromScrollEnd: true);
           },
           child: Container(
             decoration: const BoxDecoration(
