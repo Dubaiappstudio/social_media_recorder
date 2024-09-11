@@ -170,7 +170,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
           onHorizontalDragEnd: (x) {
             print('onHorizontalDragEnd');
 
-            double finalPosition = x.primaryVelocity ?? 0.0;
+            double finalPosition = x.globalPosition.dx ?? 0.0;
 
             // Calculate the drag distance
             double dragDistance = finalPosition - initialPosition;
