@@ -184,7 +184,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
                 state.finishRecording(fromScrollEnd: true);
               }
             } else {
-              if(!state.isLocke){
+              if(!state.isLocked){
               state.finishRecording();
               print('Scroll less than 50% of screen width');
               }
