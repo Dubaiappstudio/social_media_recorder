@@ -9,9 +9,12 @@ class LockRecord extends StatefulWidget {
   final SoundRecordNotifier soundRecorderState;
   // ignore: sort_constructors_first
 
+  final Color? lockBackGroundColor;
+
   final Widget? lockIcon;
   const LockRecord({
     this.lockIcon,
+    this.lockBackGroundColor,
     required this.soundRecorderState,
     Key? key,
   }) : super(key: key);
@@ -23,7 +26,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     /// If click the Button Then send show lock and un lock icon
-    if (!widget.soundRecorderState.buttonPressed) return Container();
+    // if (!widget.soundRecorderState.buttonPressed) return Container();
     return AnimatedPadding(
       duration: const Duration(seconds: 1),
       padding: EdgeInsets.all(widget.soundRecorderState.second % 2 == 0 ? 0 : 8),
@@ -37,7 +40,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
             opacity: widget.soundRecorderState.edge >= 50 ? 0 : 1,
             child: Container(
               height: 80,
-              color: Colors.grey.shade100,
+              color: widget.lockBackGroundColor ?? Colors.grey.shade100,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: widget.lockIcon ??
