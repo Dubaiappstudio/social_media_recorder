@@ -26,7 +26,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     /// If click the Button Then send show lock and un lock icon
-    // if (!widget.soundRecorderState.buttonPressed) return Container();
+   if (!widget.soundRecorderState.buttonPressed) return Container();
     return AnimatedPadding(
       duration: const Duration(seconds: 1),
       padding: EdgeInsets.all(widget.soundRecorderState.second % 2 == 0 ? 0 : 8),
