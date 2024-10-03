@@ -31,7 +31,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
       duration: const Duration(seconds: 1),
       padding: EdgeInsets.all(widget.soundRecorderState.second % 2 == 0 ? 0 : 8),
       child: Transform.translate(
-        offset: const Offset(0, -120),
+        offset: const Offset(0, -110),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: AnimatedOpacity(
