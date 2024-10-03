@@ -26,10 +26,9 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
     if (!widget.soundRecorderState.buttonPressed) return Container();
     return AnimatedPadding(
       duration: const Duration(seconds: 1),
-      padding:
-          EdgeInsets.all(widget.soundRecorderState.second % 2 == 0 ? 0 : 8),
+      padding: EdgeInsets.all(widget.soundRecorderState.second % 2 == 0 ? 0 : 8),
       child: Transform.translate(
-        offset: const Offset(0, -70),
+        offset: const Offset(0, -120),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: AnimatedOpacity(
@@ -37,9 +36,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
             curve: Curves.easeIn,
             opacity: widget.soundRecorderState.edge >= 50 ? 0 : 1,
             child: Container(
-              height: 50 - widget.soundRecorderState.heightPosition < 0
-                  ? 0
-                  : 50 - widget.soundRecorderState.heightPosition,
+              height: 80,
               color: Colors.grey.shade100,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -51,9 +48,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
                           child: AnimatedOpacity(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn,
-                              opacity: widget.soundRecorderState.second % 2 != 0
-                                  ? 0
-                                  : 1,
+                              opacity: widget.soundRecorderState.second % 2 != 0 ? 0 : 1,
                               child: const Icon(Icons.lock_outline_rounded)),
                         ),
                         Align(
@@ -61,9 +56,7 @@ class _LockRecordState extends State<LockRecord> with TickerProviderStateMixin {
                           child: AnimatedOpacity(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn,
-                              opacity: widget.soundRecorderState.second % 2 == 0
-                                  ? 0
-                                  : 1,
+                              opacity: widget.soundRecorderState.second % 2 == 0 ? 0 : 1,
                               child: const Icon(Icons.lock_open_rounded)),
                         ),
                       ],
