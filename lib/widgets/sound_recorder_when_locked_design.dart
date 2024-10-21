@@ -57,8 +57,8 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
           children: [
             InkWell(
               onTap: () async {
-                //soundRecordNotifier.isShow = false;
-                //soundRecordNotifier.finishRecording();
+                soundRecordNotifier.isShow = false;
+                soundRecordNotifier.finishRecording();
               },
               child: Transform.scale(
                 scale: 1.2,
