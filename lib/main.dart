@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_recorder/audio_encoder_type.dart';
 import 'package:social_media_recorder/screen/social_media_recorder.dart';
 
 void main() {
@@ -44,18 +43,52 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Align(
             alignment: Alignment.centerRight,
             child: SocialMediaRecorder(
-              // maxRecordTimeInSecond: 5,
-              startRecording: () {
-                // function called when start recording
-              },
-              stopRecording:  (_time) {
-                // function called when stop recording, return the recording time
-              },
-              sendRequestFunction: (soundFile, _time) {
-                //  print("the current path is ${soundFile.path}");
-              },
-              encode: AudioEncoderType.AAC,
-              // storeSoundRecoringPath: "/storage/emulated/0/new_record_sound",
+              disable: false,
+              width: MediaQuery.of(context).size.width * 0.95,
+              initRecordPackageWidth: 46,
+              slideToCancelText: 'Slide to cancel >',
+              cancelText: 'Cancel',
+              lockButton: Padding(
+                padding: const EdgeInsets.only(left: 2, right: 2),
+                child: Column(
+                  children: [
+                    Icon(Icons.lock),
+                    Icon(
+                      Icons.keyboard_double_arrow_up_sharp,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
+              ),
+              sendButtonIcon: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Icon(Icons.mic),
+              ),
+              recordIcon: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Icon(Icons.mic),
+              ),
+              recordIconBackGroundColor: Colors.transparent,
+              backGroundColor: Colors.transparent,
+              slideToCancelTextStyle: TextStyle(
+                color: Colors.blue,
+                fontSize: 16,
+              ),
+              cancelTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+              counterTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+              counterBackGroundColor: Colors.transparent,
+              cancelTextBackGroundColor: Colors.transparent,
+              recordIconWhenLockBackGroundColor: Colors.red,
+              fullRecordPackageHeight: 40,
+              startRecording: () {},
+              stopRecording: (v) {},
+              sendRequestFunction: (String soundFile, String time) {},
             ),
           ),
         ),

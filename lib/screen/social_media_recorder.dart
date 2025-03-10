@@ -85,6 +85,8 @@ class SocialMediaRecorder extends StatefulWidget {
 
   final double? width;
 
+  final bool disable;
+
   // ignore: sort_constructors_first
   const SocialMediaRecorder({
     this.sendButtonIcon,
@@ -112,6 +114,7 @@ class SocialMediaRecorder extends StatefulWidget {
     this.encode = AudioEncoderType.AAC,
     this.cancelTextBackGroundColor,
     this.radius,
+    this.disable = false,
     Key? key,
   }) : super(key: key);
 
@@ -229,6 +232,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
 
     return Listener(
       onPointerDown: (details) async {
+        if (widget.disable) return;
         state.setNewInitialDraggableHeight(details.position.dy);
         state.resetEdgePadding();
 
