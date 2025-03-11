@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Align(
             alignment: Alignment.centerRight,
             child: SocialMediaRecorder(
-              disable: true,
+              disable: false,
               width: MediaQuery.of(context).size.width * 0.95,
               initRecordPackageWidth: 46,
               slideToCancelText: 'Slide to cancel >',
