@@ -74,6 +74,8 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   late AudioEncoderType encode;
 
+  final bool disable;
+
   // ignore: sort_constructors_first
 
   SoundRecordNotifier({
@@ -91,6 +93,7 @@ class SoundRecordNotifier extends ChangeNotifier {
     this.lockScreenRecord = false,
     this.encode = AudioEncoderType.AAC,
     this.maxRecordTime,
+    this.disable = false,
   });
 
   /// To increase counter after 1 sencond
@@ -102,7 +105,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   }
 
   finishRecording({bool? fromScrollEnd}) {
-    if (buttonPressed) {
+    if (buttonPressed && !disable) {
       if (second > 0 || minute > 0) {
         // print("the current path is $mPath");
         String path = mPath;

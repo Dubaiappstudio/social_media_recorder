@@ -129,11 +129,11 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   @override
   void initState() {
     soundRecordNotifier = SoundRecordNotifier(
-      maxRecordTime: widget.maxRecordTimeInSecond,
-      startRecording: widget.startRecording ?? () {},
-      stopRecording: widget.stopRecording ?? (String x) {},
-      sendRequestFunction: widget.sendRequestFunction,
-    );
+        maxRecordTime: widget.maxRecordTimeInSecond,
+        startRecording: widget.startRecording ?? () {},
+        stopRecording: widget.stopRecording ?? (String x) {},
+        sendRequestFunction: widget.sendRequestFunction,
+        disable: widget.disable);
 
     soundRecordNotifier.initialStorePathRecord = widget.storeSoundRecoringPath ?? "";
     soundRecordNotifier.isShow = false;
