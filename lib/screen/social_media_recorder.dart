@@ -129,11 +129,11 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   @override
   void initState() {
     soundRecordNotifier = SoundRecordNotifier(
-        maxRecordTime: widget.maxRecordTimeInSecond,
-        startRecording: widget.startRecording ?? () {},
-        stopRecording: widget.stopRecording ?? (String x) {},
-        sendRequestFunction: widget.sendRequestFunction,
-        disable: widget.disable);
+      maxRecordTime: widget.maxRecordTimeInSecond,
+      startRecording: widget.startRecording ?? () {},
+      stopRecording: widget.stopRecording ?? (String x) {},
+      sendRequestFunction: widget.sendRequestFunction,
+    );
 
     soundRecordNotifier.initialStorePathRecord = widget.storeSoundRecoringPath ?? "";
     soundRecordNotifier.isShow = false;
@@ -214,6 +214,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
   Widget recordVoice(SoundRecordNotifier state) {
     if (state.lockScreenRecord == true) {
       return SoundRecorderWhenLockedDesign(
+        disable: widget.disable,
         cancelText: widget.cancelText,
         fullRecordPackageHeight: widget.fullRecordPackageHeight,
         // cancelRecordFunction: widget.cacnelRecording ?? () {},

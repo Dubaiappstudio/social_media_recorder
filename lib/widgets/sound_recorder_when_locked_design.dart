@@ -19,6 +19,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
   final Color? cancelTextBackGroundColor;
   final Widget? sendButtonIcon;
   final double? width;
+  final bool disable;
   // ignore: sort_constructors_first
   const SoundRecorderWhenLockedDesign({
     Key? key,
@@ -35,6 +36,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
     required this.recordIconWhenLockBackGroundColor,
     required this.counterBackGroundColor,
     required this.cancelTextBackGroundColor,
+    this.disable = false,
   }) : super(key: key);
 
   @override
@@ -59,7 +61,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
               onTap: () async {
                 print('click send when lock');
                 soundRecordNotifier.isShow = false;
-                soundRecordNotifier.finishRecording();
+                soundRecordNotifier.finishRecording(disable: disable);
               },
               child: Transform.scale(
                 scale: 1.2,
