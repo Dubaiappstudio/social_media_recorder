@@ -119,6 +119,8 @@ class SoundRecordNotifier extends ChangeNotifier {
       } else {
         stopRecording!('0:0');
       }
+    } else {
+      stopRecording!('0:0');
     }
     resetEdgePadding();
   }
