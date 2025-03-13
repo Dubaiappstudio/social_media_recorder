@@ -40,7 +40,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width?? MediaQuery.of(context).size.width* 0.8,
+      width: width ?? MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
         color: cancelTextBackGroundColor ?? Colors.grey.shade100,
         borderRadius: const BorderRadius.only(
@@ -57,6 +57,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
           children: [
             InkWell(
               onTap: () async {
+                print('click send when lock');
                 soundRecordNotifier.isShow = false;
                 soundRecordNotifier.finishRecording();
               },
@@ -79,9 +80,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
                               Icons.send,
                               textDirection: TextDirection.ltr,
                               size: 28,
-                              color: (soundRecordNotifier.buttonPressed)
-                                  ? Colors.grey.shade200
-                                  : Colors.black,
+                              color: (soundRecordNotifier.buttonPressed) ? Colors.grey.shade200 : Colors.black,
                             ),
                       ),
                     ),

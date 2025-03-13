@@ -105,6 +105,7 @@ class SoundRecordNotifier extends ChangeNotifier {
   }
 
   finishRecording({bool? fromScrollEnd}) {
+    print('from finish recording ${buttonPressed && !disable}');
     if (buttonPressed && !disable) {
       if (second > 0 || minute > 0) {
         // print("the current path is $mPath");
@@ -124,6 +125,7 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   /// used to reset all value to initial value when end the record
   resetEdgePadding() async {
+    print('from reset edge padding');
     _localCounterForMaxRecordTime = 0;
     isLocked = false;
     edge = 0;
