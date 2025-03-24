@@ -59,7 +59,7 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
           children: [
             InkWell(
               onTap: () async {
-                print('click send when lock');
+                // print('click send when lock');
                 soundRecordNotifier.isShow = false;
                 soundRecordNotifier.finishRecording(disable: disable);
               },

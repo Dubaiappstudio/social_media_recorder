@@ -174,9 +174,9 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
             state.updateScrollValue(scrollEnd.globalPosition, context);
           },
           onHorizontalDragEnd: (x) {
-            print('onHorizontalDragEnd');
+            // print('onHorizontalDragEnd');
 
-            double finalPosition = x.globalPosition.dx ?? 0.0;
+            double finalPosition = x.globalPosition.dx;
 
             // Calculate the drag distance
             double dragDistance = finalPosition - initialPosition;
@@ -192,7 +192,7 @@ class _SocialMediaRecorder extends State<SocialMediaRecorder> {
             } else {
               if (!state.isLocked) {
                 state.finishRecording();
-                print('Scroll less than 50% of screen width');
+                // print('Scroll less than 50% of screen width');
               }
             }
             //if (state.buttonPressed && !state.isLocked) state.finishRecording(fromScrollEnd: true);

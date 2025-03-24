@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:social_media_recorder/audio_encoder_type.dart';
-// import 'package:uuid/uuid.dart';
 
 class SoundRecordNotifier extends ChangeNotifier {
   int _localCounterForMaxRecordTime = 0;
@@ -28,7 +24,6 @@ class SoundRecordNotifier extends ChangeNotifier {
   // AudioRecorder recordMp3 = AudioRecorder();
 
   /// recording mp3 sound to check if all permisiion passed
-  bool _isAcceptedPermission = false;
 
   /// used to update state when user draggable to the top state
   double currentButtonHeihtPlace = 0;
@@ -102,7 +97,6 @@ class SoundRecordNotifier extends ChangeNotifier {
   }
 
   finishRecording({bool? fromScrollEnd, bool disable = false}) {
-    print('from finish recording ${buttonPressed && !disable}');
     if (buttonPressed && !disable) {
       if (second > 0 || minute > 0) {
         // print("the current path is $mPath");
@@ -124,7 +118,6 @@ class SoundRecordNotifier extends ChangeNotifier {
 
   /// used to reset all value to initial value when end the record
   resetEdgePadding() async {
-    print('from reset edge padding');
     _localCounterForMaxRecordTime = 0;
     isLocked = false;
     edge = 0;
@@ -139,39 +132,6 @@ class SoundRecordNotifier extends ChangeNotifier {
     if (_timerCounter != null) _timerCounter!.cancel();
     // recordMp3.stop();
     notifyListeners();
-  }
-
-  // String _getSoundExtention() {
-  //   if (encode == AudioEncoderType.AAC ||
-  //       encode == AudioEncoderType.AAC_LD ||
-  //       encode == AudioEncoderType.AAC_HE ||
-  //       encode == AudioEncoderType.OPUS) {
-  //     return ".m4a";
-  //   } else {
-  //     return ".3gp";
-  //   }
-  // }
-
-  /// used to get the current store path
-  Future<String> getFilePath() async {
-    Directory tempDir = await getApplicationDocumentsDirectory();
-    // // Directory tempDir = await getApplicationDocumentsDirectory();
-    // int random = Random().nextInt(100000);
-    //
-    // _sdPath =
-    //     initialStorePathRecord.isEmpty ? tempDir.path : initialStorePathRecord;
-    // var d = Directory(_sdPath);
-    // if (!d.existsSync()) {
-    //   d.createSync(recursive: true);
-    // }
-    DateTime now = DateTime.now();
-    String convertedDateTime =
-        "${now.year.toString()}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}-${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
-    // print("the current data is $convertedDateTime");
-
-    String filePath = '${tempDir.path}/Roomco_sound_$convertedDateTime.wav';
-    mPath = filePath;
-    return filePath;
   }
 
   /// used to change the draggable to top value
@@ -285,19 +245,5 @@ class SoundRecordNotifier extends ChangeNotifier {
     notifyListeners();
     // }
     // notifyListeners();
-  }
-
-  /// to check permission
-  voidInitialSound() async {
-    // if (Platform.isIOS) _isAcceptedPermission = true;
-
-    startRecord = false;
-    final status = await Permission.microphone.status;
-    if (status.isGranted) {
-      final result = await Permission.storage.request();
-      if (result.isGranted) {
-        _isAcceptedPermission = true;
-      }
-    }
   }
 }

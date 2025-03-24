@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
               initRecordPackageWidth: 46,
               slideToCancelText: 'Slide to cancel >',
               cancelText: 'Cancel',
-              lockButton: Padding(
-                padding: const EdgeInsets.only(left: 2, right: 2),
+              lockButton: const Padding(
+                padding: EdgeInsets.only(left: 2, right: 2),
                 child: Column(
                   children: [
                     Icon(Icons.lock),
@@ -60,25 +60,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              sendButtonIcon: Padding(
-                padding: const EdgeInsets.all(4),
+              sendButtonIcon: const Padding(
+                padding: EdgeInsets.all(4),
                 child: Icon(Icons.mic),
               ),
-              recordIcon: Padding(
-                padding: const EdgeInsets.all(4),
+              recordIcon: const Padding(
+                padding: EdgeInsets.all(4),
                 child: Icon(Icons.mic),
               ),
               recordIconBackGroundColor: Colors.transparent,
               backGroundColor: Colors.transparent,
-              slideToCancelTextStyle: TextStyle(
+              slideToCancelTextStyle: const TextStyle(
                 color: Colors.blue,
                 fontSize: 16,
               ),
-              cancelTextStyle: TextStyle(
+              cancelTextStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
               ),
-              counterTextStyle: TextStyle(
+              counterTextStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
               ),
